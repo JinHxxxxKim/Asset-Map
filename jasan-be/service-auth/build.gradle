@@ -1,0 +1,34 @@
+plugins {
+    id 'java' // 👈 이 줄을 추가해서 명확하게 선언해줍니다.
+}
+
+description = 'service-auth'
+
+
+
+dependencies {
+    // 1. 웹 서버 (Tomcat 포함)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 2. 데이터베이스 (JPA + MySQL)
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // 3. 보안 (Security + Password 암호화)
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // 4. 유효성 검사 (@NotNull 등)
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // 5. eureka client
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // JWT 라이브러리 (0.11.5 버전이 가장 안정적)
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+}
+
+

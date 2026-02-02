@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.10'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+// 2. 루트 프로젝트 정보
+group = 'com.jasan'
+version = '0.0.1-SNAPSHOT'
+description = 'jasan-be-root'
+
+// 루트 프로젝트는 실행 파일(jar)을 만들지 않음
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+// 3. ✨ 핵심: 모든 하위 모듈(service-auth, infra-gateway 등)에 공통 적용되는 설정
+subprojects {
+    // 하위 모듈들에 플러그인 자동 적용
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'com.jasan'
+    version = '0.0.1-SNAPSHOT'
+
+    // Java 21 설정 (toolchain 사용)
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    // 공통 저장소
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        set('springCloudVersion', "2025.0.1")
+    }
+
+    // 모든 모듈에서 공통으로 쓸 라이브러리 (Lombok, Test 등)
+    dependencies {
+        // Lombok: 모든 서비스에서 쓰므로 여기서 한 번만 선언
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        // Test: 모든 서비스 공통 테스트 툴
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+    // 테스트 설정
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+    tasks.register("prepareKotlinBuildScriptModel"){}
+}

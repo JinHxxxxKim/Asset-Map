@@ -8,41 +8,29 @@
 # 2. 프로젝트 폴더 허용 (Whitelist)
 # ==========================
 !jasan-fe/
+!jasan-fe/**
 !jasan-be/
+!jasan-be/**
 
 # ==========================
 # 3. [Frontend] jasan-fe 내부 무시 파일
 # ==========================
 # 의존성 모듈 (너무 무겁고 다시 설치 가능)
 jasan-fe/node_modules/
-
-# 빌드 결과물
 jasan-fe/build/
 jasan-fe/dist/
-
-# 환경변수 및 보안 파일 (해킹 위험)
 jasan-fe/.env
 jasan-fe/.env.local
-
-# 로그 파일
 jasan-fe/npm-debug.log*
 jasan-fe/yarn-debug.log*
-jasan-fe/yarn-error.log*
 
 
 # ==========================
 # 4. [Backend] jasan-be 내부 무시 파일
 # ==========================
-# 빌드 결과물 (컴파일된 파일들)
 jasan-be/build/
 jasan-be/out/
-
-# Gradle 캐시 및 설정
 jasan-be/.gradle/
-
-# IDE 설정 파일 (협업 시 충돌 원인)
 jasan-be/.idea/
 jasan-be/.vscode/
 jasan-be/*.iml
-
-# 주의: gradlew, gradlew.bat, gradle/wrapper는 올려야 함 (빌드 도구이므로)

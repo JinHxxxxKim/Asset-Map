@@ -1,0 +1,6 @@
+rootProject.name = 'jasan-be'
+include 'service-auth'
+include 'infra-eureka'
+//include 'core-module'
+//include 'infra-gateway'
+//include 'service-ledger'
