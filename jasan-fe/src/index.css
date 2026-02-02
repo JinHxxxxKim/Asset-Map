@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 추가적인 커스텀 스타일이 필요하면 아래에 작성 */
+body {
+  background-color: #f9fafb; /* bg-gray-50과 동일, 전체 배경색 */
+}
