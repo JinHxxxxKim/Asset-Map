@@ -34,3 +34,4 @@ jasan-be/.gradle/
 jasan-be/.idea/
 jasan-be/.vscode/
 jasan-be/*.iml
+jasan-be/**/*.yml
