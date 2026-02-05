@@ -38,6 +38,15 @@ public class AuthController {
         return "Authorized!";
     }
 
+    @GetMapping("/info")
+    public String getUserInfo(
+            @RequestHeader(value = "X-User-Id", required = false) String userId,
+            @RequestHeader(value = "X-User-Email", required = false) String email,
+            @RequestHeader(value = "X-Role", required = false) String role) {
+
+        return String.format("From Gateway -> ID: %s, Email: %s, Role: %s", userId, email, role);
+    }
+
     // DTO
     @Data
     static class LoginRequest {
